@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Usuario implements Serializable {
@@ -15,20 +18,34 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("codigo")
 	private long codigo;
-	
+	@JsonProperty("nick")
     private String nick;
+	@JsonProperty("correo")
     private String correo;
+	@JsonProperty("contrasenia")
     private String contrasenia;
+	@JsonProperty("nombre")
     private String nombre;
+	@JsonProperty("apellido")
     private String apellido;
-    private Date fechanac;
+	@JsonProperty("fechanac")
+    private String fechanac;
+	@JsonProperty("namigos")
     private int namigos;
-    private String fotoperfil;
+    
+    @Lob
+    @JsonProperty("fotoperfil")
+    private byte[] fotoperfil;
+    @JsonProperty("npublicaciones")
     private int npublicaciones;
 	
 	public Usuario() {
 	}
+	
+	
+
 
 	public long getId() {
 		return codigo;
@@ -100,14 +117,14 @@ public class Usuario implements Serializable {
 
 
 
-	public Date getFechanac() {
+	public String getFechanac() {
 		return fechanac;
 	}
 
 
 
-	public void setFechanac(Date fechanac) {
-		this.fechanac = fechanac;
+	public void setFechanac(String string) {
+		this.fechanac = string;
 	}
 
 
@@ -124,13 +141,13 @@ public class Usuario implements Serializable {
 
 
 
-	public String getFotoperfil() {
+	public byte[] getFotoperfil() {
 		return fotoperfil;
 	}
 
 
 
-	public void setFotoperfil(String fotoperfil) {
+	public void setFotoperfil(byte[] fotoperfil) {
 		this.fotoperfil = fotoperfil;
 	}
 
@@ -150,6 +167,15 @@ public class Usuario implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public boolean comprobarCampos() {
+		if(this.apellido.length() > 0 && this.nombre.length() > 0 && 
+				this.correo.length() > 0 && this.contrasenia.length() > 0 && 
+				this.fechanac.length() > 0 && this.nick.length() > 0 && this.fotoperfil.length > 0) {
+			return true;
+		}
+		return false;
 	}
 	
 }

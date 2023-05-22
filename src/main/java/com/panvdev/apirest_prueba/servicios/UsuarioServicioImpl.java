@@ -1,6 +1,7 @@
 package com.panvdev.apirest_prueba.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	}
 
 	@Override
-	public long iniciarSesion(String correo, String contrasenia) {
-	    return usuariorepositorio.login(correo, contrasenia);
+	public long iniciarSesion(String correo, String contrasenia) {  
+		return usuariorepositorio.login(correo, contrasenia).orElse(-1L);
 	}
 
 }
