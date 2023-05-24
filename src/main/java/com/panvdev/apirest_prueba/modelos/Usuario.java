@@ -38,15 +38,13 @@ public class Usuario implements Serializable {
     @Lob
     @JsonProperty("fotoperfil")
     private byte[] fotoperfil;
+    
     @JsonProperty("npublicaciones")
     private int npublicaciones;
 	
 	public Usuario() {
 	}
 	
-	
-
-
 	public long getId() {
 		return codigo;
 	}
