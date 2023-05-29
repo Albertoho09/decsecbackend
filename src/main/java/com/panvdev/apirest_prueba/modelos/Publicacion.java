@@ -1,14 +1,16 @@
 package com.panvdev.apirest_prueba.modelos;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 @Entity
@@ -21,9 +23,6 @@ public class Publicacion implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("codigo")
 	private long codigo;
-	
-	@JsonProperty("codigousuario")
-	private long codigousuario;
 	
 	@JsonProperty("comentario")
     private String comentario;
@@ -38,25 +37,19 @@ public class Publicacion implements Serializable{
     @JsonProperty("ncomentarios")
     private int ncomentarios;
     
-    
+    @JsonProperty("idusuario")
+    private int idusuario;
+
     public Publicacion() {
 		
 	}
-
+    
 	public long getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
-	}
-
-	public long getCodigousuario() {
-		return codigousuario;
-	}
-
-	public void setCodigousuario(long codigousuario) {
-		this.codigousuario = codigousuario;
 	}
 
 	public String getComentario() {

@@ -37,4 +37,23 @@ public class PublicacionServicioImpl implements IPublicacionServicio{
 		
 	}
 
+	@Override
+	public void megusta(long id) {
+		publicacionrepositorio.megusta(id);
+		
+	}
+
+	@Override
+	public void nomegusta(long id) {
+		publicacionrepositorio.nomegusta(id);
+	}
+
+	@Override
+	public List<Publicacion> obtenerpublicacionesusuario(long idusuario) {
+		
+		return publicacionrepositorio.publicacionesusuario(idusuario);
+	}
+	
+	
+
 }

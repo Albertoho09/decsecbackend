@@ -71,8 +71,7 @@ public class UsuarioControlador {
 
 	@GetMapping("/obtener/{id}")
 	public Usuario obtenerUsuarioId(@PathVariable long id) {
-		Usuario usuarioPorId = usuarioservicio.obtenerPorId(id);
-		return usuarioPorId;
+		return usuarioservicio.obtenerPorId(id);
 	}
 
 	@PutMapping("/actualizar/{id}")

@@ -1,15 +1,17 @@
 package com.panvdev.apirest_prueba.modelos;
 
+import java.util.*;
 import java.io.Serializable;
-import java.util.Date;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 public class Usuario implements Serializable {
@@ -20,6 +22,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("codigo")
 	private long codigo;
+	
 	@JsonProperty("nick")
     private String nick;
 	@JsonProperty("correo")
@@ -45,6 +48,20 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 	
+	
+	
+	public long getCodigo() {
+		return codigo;
+	}
+
+
+
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
+
+
+
 	public long getId() {
 		return codigo;
 	}
