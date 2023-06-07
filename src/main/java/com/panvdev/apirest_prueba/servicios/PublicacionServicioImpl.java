@@ -53,6 +53,11 @@ public class PublicacionServicioImpl implements IPublicacionServicio{
 		
 		return publicacionrepositorio.publicacionesusuario(idusuario);
 	}
+
+	@Override
+	public List<Publicacion> obtenerpublicacionesamigos(long idusuario) {
+		return publicacionrepositorio.publicacionesamigos(idusuario);
+	}
 	
 	
 

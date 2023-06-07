@@ -21,4 +21,7 @@ public interface IPublicacionServicio {
 	public void nomegusta(long id);
 	
 	public List<Publicacion> obtenerpublicacionesusuario(long idusuario);
+	
+	public List<Publicacion> obtenerpublicacionesamigos(long idusuario);
+
 }

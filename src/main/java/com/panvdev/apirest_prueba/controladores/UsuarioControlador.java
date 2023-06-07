@@ -1,24 +1,18 @@
 package com.panvdev.apirest_prueba.controladores;
 
 import java.io.IOException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,23 +62,22 @@ public class UsuarioControlador {
 			return ResponseEntity.ok("Usuario no creado");
 		}
 	}
+	
 
 	@GetMapping("/obtener/{id}")
 	public Usuario obtenerUsuarioId(@PathVariable long id) {
 		return usuarioservicio.obtenerPorId(id);
 	}
 
-	@PutMapping("/actualizar/{id}")
-	public ResponseEntity<Usuario> actualizarUsuario(@PathVariable long id, @RequestBody Usuario usuario) {
-		Usuario usuarioPorId = usuarioservicio.obtenerPorId(id);
-		usuarioPorId.setNombre(usuario.getNombre());
-		usuarioPorId.setApellido(usuario.getApellido());
-		usuarioPorId.setCorreo(usuario.getCorreo());
-
-		Usuario usuario_actualizado = usuarioservicio.guardar(usuarioPorId);
-		return new ResponseEntity<>(usuario_actualizado, HttpStatus.CREATED);
+	@PostMapping("/actualizar")
+	public ResponseEntity<?> actualizarUsuario(@RequestPart("data") String usuario) {
+		Usuario data;
+		data = new Gson().fromJson(usuario, Usuario.class);
+		System.out.println(data.getFechanac());
+		usuarioservicio.actualizarUsuario(data.getApellido(), data.getContrasenia(), data.getCorreo(), data.getFechanac(), data.getNick(), data.getNombre(), data.getCodigo());
+		return ResponseEntity.ok("Usuario actualizado exitosamente");
 	}
-
+	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<HashMap<String, Boolean>> eliminarUsuario(@PathVariable long id) {
 		this.usuarioservicio.eliminar(id);

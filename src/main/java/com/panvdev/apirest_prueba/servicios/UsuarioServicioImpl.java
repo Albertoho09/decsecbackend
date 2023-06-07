@@ -13,7 +13,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	
 	@Autowired
 	UsuarioRepositorio usuariorepositorio;
-
+	
+	
 	@Override
 	public List<Usuario> obtenerTodo() {
 		return usuariorepositorio.findAll();
@@ -39,5 +40,17 @@ public class UsuarioServicioImpl implements IUsuarioServicio{
 	public long iniciarSesion(String correo, String contrasenia) {  
 		return usuariorepositorio.login(correo, contrasenia).orElse(-1L);
 	}
+
+	@Override
+	public void actualizarUsuario(String apellido, String contrasenia, String correo, String fechanac, String nick,
+			String nombre, long codigo) {
+		usuariorepositorio.actualizarUsuario(apellido, contrasenia, correo, fechanac, nick, nombre, codigo);
+	}
+
+	@Override
+	public List<Usuario> obteneramigo(long id) {
+		return usuariorepositorio.amigos(id);
+	}
+
 
 }

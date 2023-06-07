@@ -18,8 +18,11 @@ import com.panvdev.apirest_prueba.modelos.Publicacion;
 public interface PublicacionRepositorio extends JpaRepository<Publicacion, Long> {
 	
 	
-	@Query(value="SELECT * FROM publicacion WHERE idusuario = :idusuario", nativeQuery=true)
+	@Query(value="SELECT * FROM publicacion WHERE idusuario = :idusuario ORDER BY codigo DESC", nativeQuery=true)
 	List <Publicacion> publicacionesusuario(Long idusuario);
+	
+	@Query(value="SELECT * FROM publicacion WHERE idusuario IN (SELECT idreceptor FROM peticion WHERE estado = 1 and idemisor = :idusuario) ORDER BY codigo DESC", nativeQuery=true)
+	List <Publicacion> publicacionesamigos(Long idusuario);
 	
 	@Transactional
 	@Modifying

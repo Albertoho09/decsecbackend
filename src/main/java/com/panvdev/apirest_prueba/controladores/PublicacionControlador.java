@@ -44,6 +44,11 @@ public class PublicacionControlador {
 		return publicacionservicio.obtenerpublicacionesusuario(idusuario);
 	}
 	
+	@GetMapping("/publicacionesamigos/{idusuario}")
+	public List<Publicacion> obtenerpublicacionesamigos(@PathVariable long idusuario) {
+		return publicacionservicio.obtenerpublicacionesamigos(idusuario);
+	}
+	
 	@PostMapping("/save")
 	public ResponseEntity<?> guardarPublicacion(@RequestPart("file") MultipartFile file, @RequestPart("data") String publicacion ) {
 		
