@@ -61,7 +61,6 @@ public class PublicacionControlador {
 			publicacionservicio.guardar(data);
 			return ResponseEntity.ok("publicacion creada");
 		} catch (IOException e) {
-			System.out.println("Algo salio mal");
 			e.printStackTrace();
 			return ResponseEntity.ok("publicacion no creada");
 		}
