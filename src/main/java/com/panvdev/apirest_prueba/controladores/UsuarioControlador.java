@@ -42,7 +42,6 @@ public class UsuarioControlador {
 	@PostMapping("/save")
 	public ResponseEntity<?> guardarUsuario(@RequestPart("file") MultipartFile file, @RequestPart("data") String usuario) {
 		
-		System.out.println("Entro al metodo");
 		byte[] imagenBytes;
 		Usuario data;
 		try {
@@ -54,10 +53,8 @@ public class UsuarioControlador {
 				usuarioservicio.guardar(data);
 				return ResponseEntity.ok("Usuario creado exitosamente");
 			}
-			System.out.println("datos malos");
 			return ResponseEntity.ok("Usuario no creado");
 		} catch (IOException e) {
-			System.out.println("Algo salio mal");
 			e.printStackTrace();
 			return ResponseEntity.ok("Usuario no creado");
 		}
